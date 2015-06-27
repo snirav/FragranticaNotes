@@ -18,9 +18,9 @@ class fragranceCrawler(tk.Frame):
         # We'll use the flexible pack layout manager
         self.pack()
  
-        #Fill the  Website List
+        # Fill the  Website List
         self.webSiteList=['http://www.fragrantica.com']
-        #Fill the city List
+        # Fill the designers List
         self.designerEntries=['Azzaro',
                             'Bond-No-9',
                             'Boucheron',
@@ -73,42 +73,35 @@ class fragranceCrawler(tk.Frame):
         self.defaultWebsite = tk.StringVar()
         self.defaultWebsite.set('Please Select the Websites to crawl')
         self.websiteDropdown = tk.OptionMenu(self,
-                                      self.defaultWebsite,*self.webSiteList)
+                                      self.defaultWebsite, *self.webSiteList)
                                      
         # Designer Selection Menu
         self.defaultDesigner = tk.StringVar()
         self.defaultDesigner.set('Please Select the sites to crawl')
         self.designerList = tk.OptionMenu(self,
-                                      self.defaultDesigner,"All",
+                                      self.defaultDesigner, "All",
                                       *self.designerEntries)
  
-        
         # Declaring the buttons and linking the functions
-        self.textBox=tk.Text(xscrollcommand=set(),yscrollcommand=set(),height=5,width=5)
+        self.textBox=tk.Text(xscrollcommand=set(), yscrollcommand=set(), height=5,width=5)
         
         self.crawl_button = tk.Button(self,
                                    text='Crawl Designer',
-                                   command=self.initiateCrawl,height=2,width=15)
-        
+                                   command=self.initiateCrawl, height=2, width=15)
 
-       
-        
-       
         # Put the controls on the form
         
         self.websiteDropdown.pack(fill=tk.X, side=tk.TOP)
-        self.designerList.pack(fill=tk.X,side=tk.TOP)
-        self.crawl_button.pack(fill=tk.X,side=tk.TOP)
-        self.textBox.pack(fill=tk.X,side=tk.TOP)
+        self.designerList.pack(fill=tk.X, side=tk.TOP)
+        self.crawl_button.pack(fill=tk.X, side=tk.TOP)
+        self.textBox.pack(fill=tk.X, side=tk.TOP)
         
-        
-     # Crawl handling  routine 
+    # Crawl handling routine
     def initiateCrawl(self):                     
-        crawl(self.defaultWebsite.get().title().lower(),self.defaultDesigner.get().title(),self.designerEntries)
-        tkMessageBox.showinfo("Crawling Status","Crawling Completed Successfully!!")
-        self.textBox.insert('1.0',"Crawling Completed Successfully!!","a")
+        crawl(self.defaultWebsite.get().title().lower(), self.defaultDesigner.get().title(), self.designerEntries)
+        tkMessageBox.showinfo("Crawling Status", "Crawling Completed Successfully!!")
+        self.textBox.insert('1.0', "Crawling Completed Successfully!!","a")
      
-
     def run(self):
         ''' Run the app '''        
         self.mainloop()
